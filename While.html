@@ -63,26 +63,27 @@
 
 <body>
   <script type="text/javascript">
+    var n = 0; //la variable que se sumara y la que usaremos para contador
+    var i = 0; //variable para while la cual sirve como flip flop
+    var paro;  // variable para el boton submit
+    // extraccion de la variable del imput
     function clic() {
       paro = document.getElementsByName("ciclo")[0].value;
-      ciclofor();
+      ciclowhile();
     }
-
-
-    var n; //variables globales
-    var i; //variables globales
-    var paro;
-    // funcion del for
-    function ciclofor() {
-      for (i = 0; i < paro; i++) {
-        n += i;
-        notifi(i); // aqui manda a llamar a la funcion notifi con el parametro del contador dentro
-        console.log(i);
-      };
+    // funcion del while, cualquier numero menor de 10
+    function ciclowhile() {
+      while (n < paro) {
+        n++;
+        i += n;
+        notifi(n)
+      }
+      M.toast({
+        html: `ingresaste el numero ${paro}, para parar el ciclo`});
     };
     // funcion para enviar notifiacion al escritorio
     function notifi() {
-      var notification = new Notification(`ciclo ${i}`); // usando las notificaciones del navegador
+      var notification = new Notification(`ciclo ${n}`); // usando las notificaciones del navegador
       M.toast({
         html: `ciclo ${i}`
       }); // usando el toast de materialize
@@ -100,7 +101,7 @@
                 </div>
                 <div class="input-field col s12">
                   <input name="ciclo" type="number" class="validate">
-                  <label for="first_name">ingresa el numero de ciclos</label>
+                  <label for="first_name">ingresa un numero para que pare el bucle del while</label>
                 </div>
             </form>
           </div>
