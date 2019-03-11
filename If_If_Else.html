@@ -63,34 +63,75 @@
 
 <body>
   <script type="text/javascript">
-    var n = 0; //la variable que se sumara y la que usaremos para contador
-    var i = 0; //variable para while la cual sirve como flip flop
-    var paro; // variable para el boton submit
     // extraccion de la variable del imput
     function clic() {
-      paro = document.getElementsByName("ciclo")[0].value;
-      ciclowhile();
-    }
-    // funcion del while
-    function ciclowhile() {
-      M.toast({
-        html: `ingresaste el numero ${paro}, para parar el ciclo`
-      });
-      do {
-        n += 1;
-        i = n;
-        notifi(i)
-      } while (n < paro);
-      M.toast({
-        html: `se termino el ciclo while`
-      });
-     n = 0; // mandamos a 0 por que se queda en memoria, AGUAS
+      juegO();
     };
+    // creo las variables de los jugadores
+
+    function juegO() {
+      juego = ["Papel", "Piedra", "Tijeras", "Modo dios"]; // array con datos
+      var juego_azar = juego.length; // contar la longitud
+      usuario1 = Math.floor(Math.random() * juego_azar); // seleccion al azar
+      usuario2 = Math.floor(Math.random() * juego_azar); // seleccion al azar
+      jugador1 = juego[usuario1]
+      jugador2 = juego[usuario2]
+      console.log(juego[usuario1]);
+      console.log(juego[usuario2]);
+
+      if (jugador1 == "Piedra") {
+        // si jugador 1 selecciono piedra, vamos a evaluar lo que selecciono el jugador 2
+        if (jugador2 == "Tijeras") {
+          var notification = new Notification(`Pierde Jugador 2`);
+        } else {
+          if (jugador2 == "Papel") {
+            var notification = new Notification(`Gana Jugador 2`);
+          } else {
+            if (jugador2 == "Piedra") {
+              var notification = new Notification(`Empatan ambos jugadores`);
+            } else {
+              if (jugador2 == "Modo dios") {
+                var notification = new Notification(`Destroza al jugador 1`);
+              } else {}
+            }
+          }
+        }
+      } else {
+        if (jugador1 == "Tijeras") {
+          if (jugador2 == "Tijeras") {
+            var notification = new Notification(`Empate`);
+          } else {
+            if (jugador2 == "Papel") {
+              var notification = new Notification(`Pierde Jugador 2`);
+            } else {
+              if (jugador2 == "Piedra") {
+                var notification = new Notification(`Gana Jugador 2`);
+              } else {
+                if (jugador2 == "Modo dios") {
+                  var notification = new Notification(`Destroza al jugador 1`);
+                } else {
+
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+
     // funcion para enviar notifiacion al escritorio
-    function notifi() {
-      var notification = new Notification(`ciclo ${n}`); // usando las notificaciones del navegador
+    function gano() {
+      var notification = new Notification(`gano`); // usando las notificaciones del navegador
       M.toast({
-        html: `ciclo ${n}`
+        html: `gano`
+      }); // usando el toast de materialize
+    };
+
+    function perdio() {
+      var notification = new Notification(`gano`); // usando las notificaciones del navegador
+      M.toast({
+        html: `gano`
       }); // usando el toast de materialize
     };
   </script>
