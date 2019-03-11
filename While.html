@@ -63,14 +63,15 @@
 
 <body>
   <script type="text/javascript">
-    var n; //variables globales
-    var i; //variables globales
-    var paro;
-// extraccion de la variable del imput
     function clic() {
       paro = document.getElementsByName("ciclo")[0].value;
       ciclofor();
     }
+
+
+    var n; //variables globales
+    var i; //variables globales
+    var paro;
     // funcion del for
     function ciclofor() {
       for (i = 0; i < paro; i++) {
